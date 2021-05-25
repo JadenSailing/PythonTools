@@ -15,7 +15,17 @@ class CodeLineCounter(object):
         pass
 
     def SetFilter(self, filter):
+        self.filter = filter
+        self.filterArr = str.split(self.filter, ",")
         pass
+
+    def IsValidFile(self, path):
+        if(self.filter == None or self.filter == "" or self.filter == "*.*"):
+            return True
+        for filter in self.filterArr:
+            if(str.find(path, filter) > -1):
+                return True
+        return False
 
     def GetFileLineCount(self, path):
         with open(path) as f:
@@ -28,8 +38,9 @@ class CodeLineCounter(object):
         for f in files:
             fPath = os.path.join(dir, f)
             if(os.path.isfile(fPath)):
-                self.fileCount += 1
-                self.lineCount += self.GetFileLineCount(fPath)
+                if(self.IsValidFile(f)):
+                    self.fileCount += 1
+                    self.lineCount += self.GetFileLineCount(fPath)
                 pass
             else:
                 self.dirCount += 1

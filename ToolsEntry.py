@@ -20,6 +20,8 @@ if(toolId == 1):
     dir = cfg.get(toolSection, "Dir")
     print("current dir = " + dir)
     counter.SetDir(dir)
+    filter = cfg.get(toolSection, "Filter")
+    counter.SetFilter(filter)
     dirCount, fileCount, lineCount = counter.Count()
     print("dirCount = %d, fileCount = %d, lineCount = %d" % (dirCount, fileCount, lineCount))
     pass
