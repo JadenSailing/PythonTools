@@ -28,8 +28,14 @@ class CodeLineCounter(object):
         return False
 
     def GetFileLineCount(self, path):
-        with open(path) as f:
-            return len(f.readlines())
+        with open(path,'rb') as f:
+            count = 0
+            while True:
+                data = f.read(0x400000)
+                if not data:
+                    break
+                count += data.count(b'\n')
+            return count
 
     def DoCount(self, dir):
         files = os.listdir(dir)
