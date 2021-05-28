@@ -23,7 +23,7 @@ class CodeLineCounter(object):
         if(self.filter == None or self.filter == "" or self.filter == "*.*"):
             return True
         for filter in self.filterArr:
-            if(str.find(path, filter) > -1):
+            if(path[-len(filter):] == filter):
                 return True
         return False
 
