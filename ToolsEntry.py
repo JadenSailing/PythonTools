@@ -28,4 +28,18 @@ if(toolId == 1):
     print("fileCount = %d" % (fileCount, ))
     print("lineCount = %d" % (lineCount,))
     pass
-pass
+elif(toolId == 2):
+    counter = SameNameFile()
+    dir = cfg.get(toolSection, "Dir")
+    print("current dir = " + dir)
+    counter.SetDir(dir)
+    filter = cfg.get(toolSection, "Filter")
+    counter.SetFilter(filter)
+    dirCount, fileCount, sameSet = counter.Check()
+    print("dirCount = %d" % (dirCount, ))
+    print("fileCount = %d" % (fileCount, ))
+    sameIndex = 1
+    for file in sameSet:
+        print("%d:%s" % (sameIndex, file))
+        sameIndex = sameIndex + 1
+    pass
