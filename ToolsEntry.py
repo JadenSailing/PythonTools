@@ -5,6 +5,7 @@
 import os
 import configparser
 from Tools import *
+from Tools.ExportMrthPace import ExportMrthPace
 
 cfg = configparser.ConfigParser()
 cfg.read("Config.ini", encoding = "utf8")
@@ -42,4 +43,13 @@ elif(toolId == 2):
     for file in sameSet:
         print("%d:%s" % (sameIndex, file))
         sameIndex = sameIndex + 1
+    pass
+elif(toolId == 3):
+    exportFileName = cfg.get(toolSection, "FileName")
+    exporter = ExportMrthPace()
+    startPace = cfg.get(toolSection, "StartPace")
+    endPace = cfg.get(toolSection, "EndPace")
+    exporter.SetRange(startPace, endPace)
+    exporter.SetExportFile(exportFileName)
+    exporter.Export()
     pass
