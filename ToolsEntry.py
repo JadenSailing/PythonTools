@@ -49,7 +49,8 @@ elif(toolId == 3):
     exporter = ExportMrthPace()
     startPace = cfg.get(toolSection, "StartPace")
     endPace = cfg.get(toolSection, "EndPace")
-    exporter.SetRange(startPace, endPace)
+    step = cfg.get(toolSection, "Step")
+    exporter.SetRange(startPace, endPace, step)
     exporter.SetExportFile(exportFileName)
     exporter.Export()
     pass

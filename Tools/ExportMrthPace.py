@@ -16,9 +16,10 @@ class ExportMrthPace(object):
     def __init__(self):
         pass
 
-    def SetRange(self, startPace, endPace):
+    def SetRange(self, startPace, endPace, step):
         self.startPace = str(startPace)
         self.endPace = str(endPace)
+        self.step = int(step)
         pass
 
     def SetExportFile(self, exportFile):
@@ -29,11 +30,11 @@ class ExportMrthPace(object):
         time = str(time)
         hour = (int)(time[0])
         min = (int)(time[1:3])
-        if(min == 55):
+        if(min == 59):
             min = 0
             hour = hour + 1
         else:
-            min = min + 5
+            min = min + self.step
         if(min < 10):
             return str(hour) + "0" + str(min)
         else:
